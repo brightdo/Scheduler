@@ -1,7 +1,7 @@
 # Scheduler
 implement scheduling in order to see how the time required depends on the scheduling algorithm and the request patterns.    
 A process is characterized by just four non-negative integers A, B, C, and IO. A is the arrival time of the process and C is the total CPU time needed. The I/O times that alternates with computation times are uniformly distributed random integers in the interval (0, B].    
-The following kinds of scheduling algorithms are uploaded
+The following kinds of scheduling algorithms are uploaded  
 • FCFS  
 • RR with quantum 2.  
 • Uniprogrammed. Just one process active. When it is blocked, the system waits.  
