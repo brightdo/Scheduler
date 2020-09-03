@@ -17,4 +17,4 @@ javac Scheduling.java
 ### Running
 Provide the text-based input as the first and only command line argument in the following way. See sample [input files](/inputs) as well as their [corresponding outputs](/outputs). Add an optional verbose command to produce a more detailed output.
 ```
-java Scheduling input(1~7).txt + optional -verbose
+java Scheduling input(1~7).txt + optional -verbose + random-numbers
