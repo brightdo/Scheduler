@@ -2,35 +2,35 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RoundRobin {
-	
-	private Database database;
 
-    private ArrayList allRandomNum = new ArrayList <String> ();
-	
+    private Database database;
+
+    private ArrayList allRandomNum = new ArrayList < String > ();
+
     public RoundRobin(ArrayList allData, ArrayList allRandomNum) {
-    	
-		database =  new Database(allData);
+
+        database = new Database(allData);
 
 
-		for(int i=0; i<allRandomNum.size();i++) {
-			this.allRandomNum.add(allRandomNum.get(i));
-		}
-		
-	}
-	
-	
-	public void output(boolean specific) {
+        for (int i = 0; i < allRandomNum.size(); i++) {
+            this.allRandomNum.add(allRandomNum.get(i));
+        }
+
+    }
+
+
+    public void output(boolean specific) {
         int runningTime = 0;
         boolean recentTerminate;
         int totalTurnAroundTime = 0;
         int totalWaitingTime = 0;
-        int[]  blockCount = new int[database.getNumOfProcess()];
+        int[] blockCount = new int[database.getNumOfProcess()];
         int[] runCount = new int[database.getNumOfProcess()];
         int[] turnaroundTime = new int[database.getNumOfProcess()];
         int[] finishingTime = new int[database.getNumOfProcess()];
         int[] IOTime = new int[database.getNumOfProcess()];
         int[] waitingTime = new int[database.getNumOfProcess()];
-        String[]  processSituation = new String[database.getNumOfProcess()];
+        String[] processSituation = new String[database.getNumOfProcess()];
         int[] remainder = new int[database.getNumOfProcess()];
         int TotalIOTime = 0;
         String anyThingRunning = "";
@@ -387,5 +387,5 @@ public class RoundRobin {
         System.out.format("     Average turnaround time: %.6f%n", ((double)(totalTurnAroundTime) / (double)(database.getNumOfProcess())));
         System.out.format("     Average waiting time: %.6f%n", ((double)(totalWaitingTime) / (double)(database.getNumOfProcess())));
 
-    } 
+    }
 }

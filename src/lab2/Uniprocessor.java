@@ -2,31 +2,31 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Uniprocessor {
-	
-	private Database database;
 
-    private ArrayList allRandomNum = new ArrayList <String> ();
-	
+    private Database database;
+
+    private ArrayList allRandomNum = new ArrayList < String > ();
+
     public Uniprocessor(ArrayList allData, ArrayList allRandomNum) {
-    	
-		database =  new Database(allData);
+
+        database = new Database(allData);
 
 
-		for(int i=0; i<allRandomNum.size();i++) {
-			this.allRandomNum.add(allRandomNum.get(i));
-		}
-		
-	}
-	
-	
-	public void output(boolean specific) {
-        int[]  blockCount = new int[database.getNumOfProcess()];
+        for (int i = 0; i < allRandomNum.size(); i++) {
+            this.allRandomNum.add(allRandomNum.get(i));
+        }
+
+    }
+
+
+    public void output(boolean specific) {
+        int[] blockCount = new int[database.getNumOfProcess()];
         int[] runCount = new int[database.getNumOfProcess()];
         int[] turnaroundTime = new int[database.getNumOfProcess()];
         int[] finishingTime = new int[database.getNumOfProcess()];
         int[] IOTime = new int[database.getNumOfProcess()];
         int[] waitingTime = new int[database.getNumOfProcess()];
-        String[]  processSituation = new String[database.getNumOfProcess()];
+        String[] processSituation = new String[database.getNumOfProcess()];
         int runningTime = 0;
         boolean recentTerminate;
         int totalTurnAroundTime = 0;
@@ -75,8 +75,8 @@ public class Uniprocessor {
         }
         numOfCycle++;
         numOfCyclePrint++;
-        
-        runCount[(int) readyProcess.get(0)] = Main.randomOS(database.getB()[(int) readyProcess.get(0)],allRandomNum);
+
+        runCount[(int) readyProcess.get(0)] = Main.randomOS(database.getB()[(int) readyProcess.get(0)], allRandomNum);
         allRandomNum.remove(0);
         for (int i = 0; i < database.getNumOfProcess(); i++) {
             done += database.getTotalCpuTime()[i];
@@ -158,7 +158,7 @@ public class Uniprocessor {
                 readyProcess.remove(0);
                 if (!readyProcess.isEmpty()) {
                     processSituation[(int) readyProcess.get(0)] = "running";
-                    runCount[(int) readyProcess.get(0)] = Main.randomOS(database.getB()[(int) readyProcess.get(0)],allRandomNum);
+                    runCount[(int) readyProcess.get(0)] = Main.randomOS(database.getB()[(int) readyProcess.get(0)], allRandomNum);
                     allRandomNum.remove(0);
                 }
             }
@@ -184,7 +184,7 @@ public class Uniprocessor {
             }
             if (!readyProcess.isEmpty() && blockCount[(int) readyProcess.get(0)] == 0 && processSituation[(int) readyProcess.get(0)].contains("blocked")) {
                 processSituation[(int) readyProcess.get(0)] = "running";
-                runCount[(int) readyProcess.get(0)] = Main.randomOS(database.getB()[(int) readyProcess.get(0)],allRandomNum);
+                runCount[(int) readyProcess.get(0)] = Main.randomOS(database.getB()[(int) readyProcess.get(0)], allRandomNum);
                 if (specific) {
                     System.out.println("Find burst when choosing ready process to run " + allRandomNum.get(0));
                 }
@@ -200,7 +200,7 @@ public class Uniprocessor {
                             System.out.println("Find I/O burst when blocking a process " + allRandomNum.get(0));
                         }
                         blockCount[(int) readyProcess.get(0)] = Main.randomOS(database.getIO()[(int) readyProcess.get(0)], allRandomNum);
-                        IOTime[(int) readyProcess.get(0)] += Main.randomOS(database.getIO()[(int) readyProcess.get(0)],allRandomNum );
+                        IOTime[(int) readyProcess.get(0)] += Main.randomOS(database.getIO()[(int) readyProcess.get(0)], allRandomNum);
                         allRandomNum.remove(0);
                     }
                 }
@@ -239,5 +239,5 @@ public class Uniprocessor {
         System.out.format("     Average turnaround time: %.6f%n", ((double)(totalTurnAroundTime) / (double)(database.getNumOfProcess())));
         System.out.format("     Average waiting time: %.6f%n \n", ((double)(totalWaitingTime) / (double)(database.getNumOfProcess())));
 
-    } 
+    }
 }
